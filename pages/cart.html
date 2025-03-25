@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عربة التسوق - نكسا</title>
+    <!-- الروابط الخارجية -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0087ff;
+            --secondary-color: #01e0c3;
+            --accent-color: #ffd700;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f9fafb;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- الهيدر -->
+    <header class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold gradient-text">
+                <img src="https://dummyimage.com/150x50/0087ff/ffffff&text=Nexa" alt="Nexa Logo" class="h-12">
+            </a>
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="nav-link hover:text-[#01e0c3] transition">الرئيسية</a>
+                <a href="shop.html" class="nav-link hover:text-[#01e0c3] transition">المتجر</a>
+                <a href="blog.html" class="nav-link hover:text-[#01e0c3] transition">المدونة</a>
+                <a href="contact.html" class="nav-link hover:text-[#01e0c3] transition">اتصل بنا</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="cart.html" class="text-[#0087ff] relative">
+                    <i class="fas fa-shopping-cart text-2xl"></i>
+                    <span
+                        class="absolute -top-2 -right-2 bg-[#01e0c3] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+                </a>
+                <a href="login.html"
+                    class="bg-[#0087ff] text-white px-4 py-2 rounded-full hover:bg-[#0073d6] transition">تسجيل
+                    الدخول</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- محتوى صفحة عربة التسوق -->
+    <main class="pt-32 pb-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-center mb-12 gradient-text">عربة التسوق</h1>
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- قائمة المنتجات في العربة -->
+                <section class="flex-1">
+                    <!-- لكل منتج بطاقة -->
+                    <div class="space-y-4">
+                        <!-- نموذج بطاقة منتج -->
+                        <div class="flex flex-col sm:flex-row items-center bg-white p-4 rounded-xl shadow-md">
+                            <img src="https://picsum.photos/150/150?random=1" alt="اسم المنتج"
+                                class="w-32 h-32 object-cover rounded-lg">
+                            <div class="flex-1 sm:mr-4 mt-4 sm:mt-0">
+                                <h3 class="text-xl font-bold">اسم المنتج التجريبي</h3>
+                                <p class="text-gray-600">وصف مختصر للمنتج التجريبي</p>
+                                <p class="text-[var(--primary-color)] font-bold mt-2">1500 ر.س</p>
+                            </div>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="flex items-center border rounded">
+                                    <button class="px-2">-</button>
+                                    <input type="number" value="1" class="w-12 text-center border-l border-r" min="1">
+                                    <button class="px-2">+</button>
+                                </div>
+                                <button
+                                    class="bg-[var(--secondary-color)] text-white px-4 py-2 rounded-full hover:bg-[#00c7ad] transition">
+                                    إزالة
+                                </button>
+                            </div>
+                        </div>
+                        <!-- يمكن تكرار بطاقات المنتجات حسب الحاجة -->
+                    </div>
+                </section>
+
+                <!-- ملخص الطلب -->
+                <aside class="w-full lg:w-1/3 bg-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">ملخص الطلب</h2>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span>المجموع الفرعي</span>
+                            <span class="font-bold">$1200</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>الشحن</span>
+                            <span class="font-bold">$50</span>
+                        </div>
+                        <hr class="my-3">
+                        <div class="flex justify-between text-lg font-bold">
+                            <span>الإجمالي</span>
+                            <span>$1250</span>
+                        </div>
+                    </div>
+                    <button
+                        class="mt-6 w-full bg-[var(--primary-color)] text-white py-3 rounded-full hover:bg-[#0073d6] transition">
+                        استكمال الشراء
+                    </button>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- الفوتر (يمكنك استخدام نفس الفوتر من الصفحات الأخرى) -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
+                    <ul class="space-y-3">
+                        <li><i class="fas fa-map-marker-alt text-[#01e0c3] mr-2"></i>الرياض، المملكة العربية السعودية
+                        </li>
+                        <li><i class="fas fa-phone text-[#01e0c3] mr-2"></i>+966 123 456 789</li>
+                        <li><i class="fas fa-envelope text-[#01e0c3] mr-2"></i>info@nexa.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="hover:text-[#01e0c3] transition">عن نكسا</a></li>
+                        <li><a href="faq.html" class="hover:text-[#01e0c3] transition">الأسئلة الشائعة</a></li>
+                        <li><a href="terms.html" class="hover:text-[#01e0c3] transition">الشروط والأحكام</a></li>
+                        <li><a href="privacy.html" class="hover:text-[#01e0c3] transition">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">تابعنا</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-snapchat"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="mt-6">
+                        <img src="https://via.placeholder.com/200x80.png?text=Download+Our+App" loading="lazy"
+                            alt="Download App" class="rounded-lg">
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">النشرة البريدية</h4>
+                    <form class="flex flex-col space-y-3">
+                        <input type="email" placeholder="بريدك الإلكتروني"
+                            class="px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-[#01e0c3] text-gray-900">
+                        <button type="submit"
+                            class="bg-[#0087ff] hover:bg-[#0073d6] text-white px-4 py-2 rounded-full">اشترك
+                            الآن</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-8 border-gray-700">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center space-y-4 md:space-y-0">
+                <div class="flex space-x-4">
+                    <img src="https://via.placeholder.com/50x30.png?text=VISA" loading="lazy" alt="VISA">
+                    <img src="https://via.placeholder.com/50x30.png?text=MC" loading="lazy" alt="MasterCard">
+                    <img src="https://via.placeholder.com/50x30.png?text=MADA" loading="lazy" alt="MADA">
+                </div>
+                <p class="text-gray-400">© 2024 نكسا. جميع الحقوق محفوظة | تصميم وتطوير <a href="#"
+                        class="text-[#01e0c3]">فريق نكسا</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المدونة - نكسا</title>
+  
+  <!-- الروابط الخارجية -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+  <style>
+    :root {
+      --primary-color: #0087ff;
+      --secondary-color: #01e0c3;
+      --accent-color: #ffd700;
+    }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f9fafb;
+      scroll-behavior: smooth;
+    }
+    .gradient-text {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    /* تنسيق الهيدر */
+    header {
+      background: #fff;
+      backdrop-filter: blur(10px);
+    }
+    .nav-link {
+      position: relative;
+      padding: 8px 12px;
+      transition: all 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary-color);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    /* تنسيق شبكة المدونة */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 2rem 0;
+    }
+    @media (min-width: 1024px) {
+      .blog-grid {
+        grid-template-columns: 3fr 1fr;
+      }
+    }
+    /* المقال الرئيسي */
+    .main-post {
+      background: #fff;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .main-post:hover .blog-image {
+      transform: scale(1.05);
+    }
+    .blog-image {
+      width: 100%;
+      height: 24rem;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .post-content {
+      padding: 1.5rem;
+    }
+    .post-content h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .post-content p {
+      color: #555;
+      margin-bottom: 1.25rem;
+    }
+    .read-more {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .read-more:hover {
+      background: #0073d6;
+    }
+    /* Sidebar */
+    .sidebar {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    .sidebar h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .category-list li {
+      cursor: pointer;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .category-list li:hover {
+      color: var(--secondary-color);
+      transform: translateX(5px);
+    }
+    .popular-posts li {
+      display: flex;
+      gap: 1rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .popular-posts li:hover {
+      color: var(--secondary-color);
+    }
+    /* الترقيم */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    .pagination .page-item {
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      background: #f3f4f6;
+      transition: background 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .pagination .page-item:hover {
+      background: var(--secondary-color);
+      color: #fff;
+    }
+    .pagination .page-item.active {
+      background: var(--primary-color);
+      color: #fff;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- الهيدر -->
+  <header class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm" id="mainHeader">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-3xl font-bold gradient-text">
+        <img src="https://dummyimage.com/150x50/0087ff/ffffff&text=Nexa" alt="Nexa Logo" class="h-12">
+      </a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="index.html" class="nav-link hover:text-[#01e0c3] transition">الرئيسية</a>
+        <a href="shop.html" class="nav-link hover:text-[#01e0c3] transition">المتجر</a>
+        <a href="blog.html" class="nav-link text-[#01e0c3] font-bold">المدونة</a>
+        <a href="contact.html" class="nav-link hover:text-[#01e0c3] transition">اتصل بنا</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <input type="text" id="searchInput" class="w-48 px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-[#01e0c3]" placeholder="ابحث هنا...">
+          <div id="searchResults" class="absolute top-full mt-2 w-full bg-white shadow-lg rounded-lg hidden"></div>
+        </div>
+        <a href="cart.html" class="text-[#0087ff] relative">
+          <i class="fas fa-shopping-cart text-2xl"></i>
+          <span class="absolute -top-2 -right-2 bg-[#01e0c3] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+        </a>
+        <a href="login.html" class="bg-[#0087ff] text-white px-4 py-2 rounded-full hover:bg-[#0073d6] transition">تسجيل الدخول</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- محتوى المدونة -->
+  <main class="pt-32 pb-24">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-4 gap-8">
+        <!-- العمود الرئيسي للمقالات -->
+        <div class="lg:col-span-3">
+          <h1 class="text-4xl font-bold mb-12 gradient-text text-center">أحدث المقالات</h1>
+          <div id="articlesContainer" class="grid gap-8">
+            <!-- سيتم تحميل المقالات الرئيسية ديناميكيًا -->
+          </div>
+          <!-- ترقيم الصفحات -->
+          <nav id="paginationContainer" class="pagination mt-12"></nav>
+        </div>
+        <!-- العمود الجانبي (Sidebar) -->
+        <aside class="lg:col-span-1 space-y-8">
+          <!-- بحث المدونة -->
+          <div class="sidebar">
+            <h3>ابحث في المدونة</h3>
+            <div class="relative">
+              <input type="text" id="blogSearch" class="w-full px-4 py-2 border rounded-full focus:ring-2 focus:ring-[#01e0c3]" placeholder="الكلمة المفتاحية...">
+              <button class="absolute left-3 top-2 text-[#0087ff]">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+          <!-- التصنيفات -->
+          <div class="sidebar">
+            <h3>التصنيفات</h3>
+            <ul class="category-list space-y-3">
+              <li data-category="all">جميع المقالات</li>
+              <li data-category="تسويق إلكتروني">تسويق إلكتروني</li>
+              <li data-category="إدارة المتاجر">إدارة المتاجر</li>
+              <li data-category="نجاح الأعمال">نجاح الأعمال</li>
+            </ul>
+          </div>
+          <!-- المقالات الشائعة -->
+          <div class="sidebar">
+            <h3>الأكثر قراءة</h3>
+            <ul class="popular-posts space-y-4">
+              <li class="flex gap-3">
+                <img src="https://source.unsplash.com/random/100x100?sig=1" class="w-16 h-16 rounded-lg object-cover" alt="مقال شائع">
+                <div>
+                  <h4 class="font-medium">دليل إنشاء متجر إلكتروني</h4>
+                  <span class="text-sm text-gray-500">5 مايو 2024</span>
+                </div>
+              </li>
+              <!-- يمكن تكرار العناصر -->
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- الفوتر -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8">
+        <!-- معلومات الاتصال -->
+        <div>
+          <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
+          <ul class="space-y-3">
+            <li><i class="fas fa-map-marker-alt text-[#01e0c3] mr-2"></i>الرياض، المملكة العربية السعودية</li>
+            <li><i class="fas fa-phone text-[#01e0c3] mr-2"></i>+966 123 456 789</li>
+            <li><i class="fas fa-envelope text-[#01e0c3] mr-2"></i>info@nexa.com</li>
+          </ul>
+        </div>
+        <!-- روابط سريعة -->
+        <div>
+          <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+          <ul class="space-y-3">
+            <li><a href="about.html" class="hover:text-[#01e0c3] transition">عن نكسا</a></li>
+            <li><a href="faq.html" class="hover:text-[#01e0c3] transition">الأسئلة الشائعة</a></li>
+            <li><a href="terms.html" class="hover:text-[#01e0c3] transition">الشروط والأحكام</a></li>
+            <li><a href="privacy.html" class="hover:text-[#01e0c3] transition">سياسة الخصوصية</a></li>
+          </ul>
+        </div>
+        <!-- وسائل التواصل -->
+        <div>
+          <h4 class="text-xl font-bold mb-4">تابعنا</h4>
+          <div class="flex space-x-4">
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-snapchat"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+          <div class="mt-6">
+            <img src="https://via.placeholder.com/200x80.png?text=Download+Our+App" loading="lazy" alt="Download App" class="rounded-lg">
+          </div>
+        </div>
+        <!-- النشرة البريدية -->
+        <div>
+          <h4 class="text-xl font-bold mb-4">النشرة البريدية</h4>
+          <form class="flex flex-col space-y-3">
+            <input type="email" placeholder="بريدك الإلكتروني" class="px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-[#01e0c3] text-gray-900">
+            <button type="submit" class="bg-[#0087ff] hover:bg-[#0073d6] text-white px-4 py-2 rounded-full">
+              اشترك الآن
+            </button>
+          </form>
+        </div>
+      </div>
+      <hr class="my-8 border-gray-700">
+      <div class="flex flex-col md:flex-row justify-between items-center text-center space-y-4 md:space-y-0">
+        <div class="flex space-x-4">
+          <img src="https://via.placeholder.com/50x30.png?text=VISA" loading="lazy" alt="VISA">
+          <img src="https://via.placeholder.com/50x30.png?text=MC" loading="lazy" alt="MasterCard">
+          <img src="https://via.placeholder.com/50x30.png?text=MADA" loading="lazy" alt="MADA">
+        </div>
+        <p class="text-gray-400">
+          © 2024 نكسا. جميع الحقوق محفوظة | تصميم وتطوير <a href="#" class="text-[#01e0c3]">فريق نكسا</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    // بيانات وهمية للمقالات الرئيسية
+    const articles = [
+      {
+        title: "كيفية زيادة مبيعات متجرك الإلكتروني",
+        category: "تسويق إلكتروني",
+        date: "2024-05-10",
+        image: "https://source.unsplash.com/random/800x600?sig=1",
+        content: "اكتشف أفضل الاستراتيجيات الحديثة لزيادة مبيعات متجرك الإلكتروني خلال 30 يومًا..."
+      },
+      {
+        title: "10 نصائح لنجاح المتاجر الإلكترونية",
+        category: "إدارة المتاجر",
+        date: "2024-05-15",
+        image: "https://source.unsplash.com/random/800x600?sig=2",
+        content: "تعرف على أهم النصائح التي تساعدك في بناء متجر إلكتروني ناجح..."
+      },
+      {
+        title: "أدوات مجانية لتحليل السوق",
+        category: "تسويق إلكتروني",
+        date: "2024-05-12",
+        image: "https://source.unsplash.com/random/800x600?sig=3",
+        content: "أفضل الأدوات المجانية التي تساعدك في تحليل السوق المستهدف..."
+      },
+      {
+        title: "أفضل وجهات السفر لعام 2024",
+        category: "نجاح الأعمال",
+        date: "2024-05-20",
+        image: "https://source.unsplash.com/random/800x600?sig=4",
+        content: "تعرف على أجمل الوجهات السياحية التي تستحق الزيارة في العام القادم..."
+      }
+    ];
+
+    // دالة عرض المقالات الرئيسية
+    function renderArticles() {
+      const container = document.getElementById("articlesContainer");
+      container.innerHTML = articles.map((article, index) => {
+        if (index === 0) {
+          return `
+          <article class="blog-card main-post bg-white rounded-2xl shadow-md overflow-hidden" data-aos="fade-up">
+            <div class="relative h-96 overflow-hidden">
+              <img src="${article.image}" class="blog-image w-full h-full object-cover" loading="lazy" alt="${article.title}">
+              <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80">
+                <span class="text-white bg-[#01e0c3] px-4 py-1 rounded-full text-sm">${article.category}</span>
+                <h2 class="text-2xl font-bold text-white mt-4">${article.title}</h2>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-gray-600 mb-4">${article.content}</p>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <img src="https://randomuser.me/api/portraits/men/1.jpg" class="w-10 h-10 rounded-full border-2 border-[#01e0c3]" alt="كاتب المقال">
+                  <span class="font-medium">أحمد محمد</span>
+                </div>
+                <a href="article.html" class="text-[#0087ff] hover:text-[#01e0c3] transition">اقرأ المزيد →</a>
+              </div>
+            </div>
+          </article>
+          `;
+        } else {
+          return `
+          <article class="blog-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="${index * 100}">
+            <img src="${article.image}" class="blog-image h-48 w-full object-cover" loading="lazy" alt="${article.title}">
+            <div class="p-4">
+              <span class="text-[#01e0c3] text-sm font-medium">${article.category}</span>
+              <h3 class="text-xl font-bold my-2">${article.title}</h3>
+              <p class="text-gray-600 line-clamp-3">${article.content}</p>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="text-sm text-gray-500">${article.date}</span>
+                <a href="article.html" class="text-[#0087ff] text-sm">اقرأ المزيد</a>
+              </div>
+            </div>
+          </article>
+          `;
+        }
+      }).join('');
+    }
+
+    // دالة الترقيم الثابت (مثال)
+    function renderPagination() {
+      const totalPages = 3;
+      const container = document.getElementById("paginationContainer");
+      let html = `<a href="#" class="page-item px-4 py-2 rounded-full bg-gray-100 hover:bg-[#01e0c3] hover:text-white">السابق</a>`;
+      for (let i = 1; i <= totalPages; i++) {
+        html += `<a href="#" class="page-item px-4 py-2 rounded-full ${i === 1 ? 'bg-[#0087ff] text-white' : 'bg-gray-100 hover:bg-[#01e0c3] hover:text-white'}">${i}</a>`;
+      }
+      html += `<a href="#" class="page-item px-4 py-2 rounded-full bg-gray-100 hover:bg-[#01e0c3] hover:text-white">التالي</a>`;
+      container.innerHTML = html;
+    }
+
+    // دالة عرض المقالات الشائعة (مثال)
+    function renderPopularPosts() {
+      const container = document.querySelector(".popular-posts");
+      const popular = [
+        {
+          title: "دليل إنشاء متجر إلكتروني",
+          date: "5 مايو 2024",
+          image: "https://source.unsplash.com/random/100x100?sig=1"
+        },
+        // يمكنك إضافة المزيد من المقالات الشائعة هنا
+      ];
+      container.innerHTML = popular.map(post => `
+        <li class="flex gap-3">
+          <img src="${post.image}" class="w-16 h-16 rounded-lg object-cover" alt="${post.title}">
+          <div>
+            <h4 class="font-medium">${post.title}</h4>
+            <span class="text-sm text-gray-500">${post.date}</span>
+          </div>
+        </li>
+      `).join('');
+    }
+
+    // إدارة البحث في السايدبار
+    document.getElementById("blogSearch").addEventListener("input", function(e) {
+      const term = e.target.value.toLowerCase();
+      document.querySelectorAll(".blog-card").forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(term) ? "block" : "none";
+      });
+    });
+
+    // إدارة التصنيفات في السايدبار
+    document.querySelectorAll(".category-list li").forEach(item => {
+      item.addEventListener("click", function() {
+        document.querySelectorAll(".category-list li").forEach(li => li.classList.remove("text-[#01e0c3]", "font-bold"));
+        this.classList.add("text-[#01e0c3]", "font-bold");
+        // يمكنك هنا تطبيق التصفية بناءً على التصنيف (مثال تجريبي)
+      });
+    });
+
+    // إدارة انيميشن التمرير للهيدر
+    window.addEventListener("scroll", () => {
+      const header = document.getElementById("mainHeader");
+      header.classList.toggle("shadow-lg", window.scrollY > 50);
+    });
+
+
+    // التهيئة الأولية
+    document.addEventListener("DOMContentLoaded", () => {
+      renderArticles();
+      renderPagination();
+      renderPopularPosts();
+      renderOtherProducts();
+      AOS.init({ duration: 1000, once: true });
+    });
+  </script>
+</body>
+</html>

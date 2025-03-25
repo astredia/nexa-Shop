@@ -1,327 +1,445 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astredia - الرئيسية</title>
-    <link rel="stylesheet" href="../css/product.css">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="shortcut icon" href="../imgs/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../lib/awesome/css/all.min.css">
-    <style>
-        .container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            background-image: url('imgs/hero/1.jpg');
-            /* استبدل الرابط بصورة خاصة بك */
-            background-size: cover;
-            background-position: center;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* تغطية داكنة لإظهار النص */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-        }
-
-        .content {
-            max-width: 80%;
-        }
-
-        .content h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
-
-        .content p {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-shop {
-            padding: 12px 30px;
-            background-color: #0087ff;
-            color: white;
-            text-transform: uppercase;
-            font-weight: 600;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-shop:hover {
-            background-color: #01e0c3;
-        }
-
-        /* Responsive for smaller screens */
-        @media (max-width: 768px) {
-            .container {
-                height: 300px;
-                margin-top: 40px;
-            }
-
-            .content h2 {
-                font-size: 1.5rem;
-            }
-
-            .content p {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تفاصيل المنتج - متجر نكسا</title>
+  
+  <!-- الروابط الخارجية -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+  <style>
+    :root {
+      --primary-color: #0087ff;
+      --secondary-color: #01e0c3;
+      --accent-color: #ffd700;
+    }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #f9fafb;
+    }
+    .gradient-text {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    /* سلايدر الصور */
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      aspect-ratio: 1/1;
+    }
+    .slider-images {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+    .slider-images img {
+      min-width: 100%;
+      object-fit: cover;
+    }
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+      transform: translateY(-50%);
+    }
+    .slider-nav button {
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: none;
+      padding: 0.75rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    /* نقاط الدليل (الدوتس) */
+    .slider-dots {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .slider-dots button {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background: #ccc;
+      border: none;
+      cursor: pointer;
+    }
+    .slider-dots button.active {
+      background: #fff;
+    }
+    /* تفاصيل المنتج */
+    .product-details {
+      padding: 1.5rem;
+    }
+    .product-details h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .product-details .price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    /* أزرار الإجراءات */
+    .action-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .btn-quick {
+      background: var(--secondary-color);
+      color: #fff;
+    }
+    .btn-quick:hover {
+      background: #00c7ad;
+    }
+    .btn-buy {
+      background: var(--primary-color);
+      color: #fff;
+    }
+    .btn-buy:hover {
+      background: #0073d6;
+    }
+    /* تبويبات الوصف والتعليقات */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid #ddd;
+    }
+    .tab-btn {
+      padding: 0.5rem 1rem;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+    .tab-btn.active {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+    .tab-content {
+      margin-top: 1rem;
+    }
+    /* قسم المنتجات الأخرى */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 1rem 0;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .product-card .details {
+      padding: 1rem;
+    }
+    .product-card .details h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .product-card .details .price {
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 1.125rem;
+    }
+    /* قسم التعليقات */
+    .comments-section {
+      margin-top: 2rem;
+    }
+    .comments-section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .comment {
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+    }
+    .comment:last-child {
+      border-bottom: none;
+    }
+    .comment p {
+      margin: 0.5rem 0;
+    }
+    .comment-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      resize: vertical;
+    }
+    .comment-form button {
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: var(--primary-color);
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .comment-form button:hover {
+      background: #0073d6;
+    }
+  </style>
 </head>
-
-<body>
-    <section class="nav-bar">
-        <div class="logo-header">
-            <h1 class="primary-text"><b>Astredia</b> - <i><span>Shop</span></i></h1>
-        </div>
-        <div class="nav-links">
-            <ul>
-                <li><a href="#"><b>الرئيسية</b></a></li>
-                <li><a href="#"><b>المتجر</b></a></li>
-                <li class="li-category">
-                    <a href="#categories"><b>الفئات</b></a>
-                    <ul class="dropdown">
-                        <li><a href="#">رجال</a></li>
-                        <li><a href="#">نساء</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <form action="#" method="get">
-                <input type="search" name="search" class="search" placeholder="بحث......">
-            </form>
-        </div>
-        <hr class="hr-header">
-    </section>
-    <br>
-
-
-    <section class="product-page">
-        <!-- Hero Section -->
-        <div class="hero-section">
-            <div class="main-image-container">
-                <img src="stores/Astredia/1.avif" alt="Main Product Image" class="main-image" />
+<body class="bg-gray-50">
+  <!-- محتوى صفحة تفاصيل المنتج -->
+  <main class="pt-32 pb-12">
+    <div class="container mx-auto px-4">
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="flex flex-col lg:flex-row">
+          <!-- قسم الصور (سلايدر الصور) -->
+          <div class="lg:w-1/2 p-4">
+            <div class="slider-container">
+              <div id="sliderImages" class="slider-images">
+                <img src="https://picsum.photos/600/600?random=1" loading="lazy" alt="صورة المنتج 1">
+                <img src="https://picsum.photos/600/600?random=2" loading="lazy" alt="صورة المنتج 2">
+                <img src="https://picsum.photos/600/600?random=3" loading="lazy" alt="صورة المنتج 3">
+              </div>
+              <div class="slider-nav absolute top-1/2 w-full flex justify-between px-4 -translate-y-1/2">
+                <button onclick="prevSlide()" aria-label="الصورة السابقة">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+                <button onclick="nextSlide()" aria-label="الصورة التالية">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+              </div>
+              <div class="slider-dots absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                <!-- نقاط الدليل سيتم توليدها بواسطة JS -->
+              </div>
             </div>
-            <div class="product-info">
-                <h1 class="product-title">Product Name</h1>
-                <p class="product-price">$99.99</p>
-                <button class="buy-now-btn">Buy Now</button>
+          </div>
+          <!-- تفاصيل المنتج -->
+          <div class="lg:w-1/2 p-6">
+            <h1 class="text-3xl font-bold mb-4">اسم المنتج التجريبي</h1>
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400">
+                ${Array.from({ length: 4 }, () => '<i class="fas fa-star"></i>').join('')}
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="text-gray-600 mr-2">(4.5)</span>
             </div>
-        </div>
-
-        <section class="product-gallery">
-
-            <div class="thumbnail-container">
-                <img src="stores/Astredia/1.avif" alt="Thumbnail 1" class="thumbnail" />
-                <img src="stores/Astredia/2.webp" alt="Thumbnail 2" class="thumbnail" />
-                <img src="stores/Astredia/1.avif" alt="Thumbnail 3" class="thumbnail" />
-                <img src="stores/Astredia/2.webp" alt="Thumbnail 4" class="thumbnail" />
-            </div>
-        </section>
-
-        <!-- Details Section -->
-        <div class="details-section">
-            <h2>Product Details</h2>
-            <br>
-            <p>
-                This is a detailed description of the product. It includes features,
-                specifications, and additional information to help the customer make an
-                informed decision.
+            <p class="text-xl text-[#0087ff] font-bold mb-4">السعر: <span class="price">1500</span> ر.س</p>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              وصف تفصيلي للمنتج التجريبي. يتميز المنتج بجودة عالية وتصميم عصري مع ميزات فريدة تُضيف قيمة للمستهلك.
             </p>
-        </div>
-
-    </section>
-
-
-    <br>
-
-    <section class="features-bar">
-        <div class="feature-item">
-            <i class="fas fa-headset"></i>
-            <p>دعم <strong>24 ساعة</strong><br>متاح على مدار الأسبوع </p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-undo-alt"></i>
-            <p>خدمة <strong>إرجاع </strong><br>استبدال المنتج خلال 14 يوما </p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-truck"></i>
-            <p>شحن <strong>سريع</strong><br>توصيل في خلال 48 ساعة</p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-shield-alt"></i>
-            <p>دفع <strong>آمن</strong><br>طرق دفع متنوعة </p>
-        </div>
-        <br>
-        <hr class="hr-header">
-    </section>
-    <br>
-    <div class="heading">
-        <h1 class="secondary-text">منتجات</h1>
-    </div>
-    <br>
-
-    <section class="products">
-        <div class="product">
-            <div class="product-img">
-                <img src="stores/Astredia/1.avif" alt="" srcset="">
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button class="btn-quick action-btn bg-[#01e0c3] text-white hover:bg-[#00c7ad]">
+                <i class="fas fa-cart-plus mr-2"></i> أضف إلى السلة
+              </button>
+              <button class="btn-buy action-btn bg-[#0087ff] text-white hover:bg-[#0073d6]">
+                <i class="fas fa-bolt mr-2"></i> شراء الآن
+              </button>
             </div>
-            <div class="product-detiles">
-                <h2><a href="#">سروال</a></h2>
-                <br>
-                <h3>السعر : 50$</h3>
-                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
-            </div>
+          </div>
         </div>
-        <div class="product">
-            <div class="product-img">
-                <div class="discount">
-                    <h3>وفر 50%</h3>
+
+        <!-- تبويبات الوصف والتعليقات -->
+        <div class="p-6 mt-6 border-t">
+          <div class="tabs flex border-b gap-2">
+            <button class="tab-btn active px-4 py-2 border-b-2 transition-colors" data-tab="description" onclick="switchTab(event)">الوصف</button>
+            <button class="tab-btn px-4 py-2 border-b-2 border-transparent transition-colors" data-tab="reviews" onclick="switchTab(event)">التعليقات (3)</button>
+          </div>
+
+          <div id="description" class="tab-content mt-4">
+            <div class="prose max-w-none">
+              <h3 class="text-xl font-bold mb-2">مميزات المنتج:</h3>
+              <ul class="list-disc pr-4">
+                <li>مصنوع من مواد عالية الجودة</li>
+                <li>تصميم مدمج وسهل الاستخدام</li>
+                <li>شهادة ضمان من الشركة المصنعة</li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="reviews" class="tab-content mt-4 hidden">
+            <div class="space-y-4">
+              ${['أحمد علي', 'محمد حسن', 'فاطمة عبدالله'].map(name => `
+              <div class="p-4 bg-gray-50 rounded-lg">
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="w-8 h-8 bg-gray-300 rounded-full"></div>
+                  <strong>${name}</strong>
+                  <span class="text-sm text-gray-500">${Math.floor(Math.random()*30)+1} يومًا مضت</span>
                 </div>
-                <img src="stores/Astredia/1.avif" alt="" srcset="">
+                <p class="text-gray-700">المنتج رائع وأداءه ممتاز</p>
+              </div>
+              `).join('')}
             </div>
-            <div class="product-detiles">
-                <h2><a href="">سروال</a></h2>
-                <br>
-                <h3>السعر : 30$ <sup><del>50$</del></sup></h3>
-                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
-            </div>
+
+            <form id="commentForm" class="mt-6" onsubmit="return addComment(event)">
+              <h3 class="text-xl font-bold mb-4">أضف تعليقك</h3>
+              <textarea id="newComment" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="اكتب تعليقك هنا..." required minlength="10" maxlength="500"></textarea>
+              <button type="submit" class="mt-3 bg-[#0087ff] text-white px-6 py-2 rounded-full hover:bg-[#0073d6] transition-colors">
+                إرسال التعليق
+              </button>
+            </form>
+          </div>
         </div>
-        <div class="product">
-            <div class="product-img">
-                <img src="stores/Astredia/1.avif" alt="" srcset="">
+      </div>
+
+      <!-- قسم عرض المزيد من المنتجات -->
+      <section class="other-products mt-12">
+        <h2 class="text-2xl font-bold mb-6 text-center gradient-text">منتجات قد تعجبك</h2>
+        <div id="otherProductsGrid" class="products-grid">
+          ${Array.from({ length: 4 }, (_, i) => `
+          <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <img src="https://picsum.photos/300/300?random=${i+100}" loading="lazy" class="w-full h-48 object-cover" alt="منتج ${i+1}">
+            <div class="p-4">
+              <h3 class="font-bold mb-2">منتج ${i+1}</h3>
+              <p class="text-blue-600 font-bold">${(Math.random()*500 + 100).toFixed(0)} ر.س</p>
+              <button class="mt-2 w-full bg-gray-100 hover:bg-gray-200 py-2 rounded-lg transition-colors">
+                <i class="fas fa-cart-plus mr-2"></i>إضافة للسلة
+              </button>
             </div>
-            <div class="product-detiles">
-                <h2><a href="">سروال</a></h2>
-                <br>
-                <h3>السعر : 50$</h3>
-                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
-            </div>
+          </div>
+          `).join('')}
         </div>
-        <div class="product">
-            <div class="product-img">
-                <img src="stores/Astredia/1.avif" alt="" srcset="">
-            </div>
-            <div class="product-detiles">
-                <h2><a href="">سروال</a></h2>
-                <br>
-                <h3>السعر : 50$</h3>
-                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
-            </div>
-        </div>
-        <div class="product">
-            <div class="product-img">
-                <div class="discount">
-                    <h3>وفر 50%</h3>
-                </div>
-                <img src="stores/Astredia/1.avif" alt="" srcset="">
-            </div>
-            <div class="product-detiles">
-                <h2><a href="">سروال</a></h2>
-                <br>
-                <h3>السعر : 30$ <sup><del>50$</del></sup></h3>
-                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
-            </div>
-        </div>
-        <div class="product">
-            <div class="product-img">
-                <img src="stores/Astredia/1.avif" alt="" srcset="">
-            </div>
-            <div class="product-detiles">
-                <h2><a href="">سروال</a></h2>
-                <br>
-                <h3>السعر : 50$</h3>
-                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
-            </div>
-        </div>
-        <hr class="hr-header">
-    </section>
-    <br>
-    <div class="heading">
-        <h1 class="secondary-text">أسئلة شائعة</h1>
+      </section>
     </div>
-    <br>
+  </main>
 
-    <section class="faq-section">
-        <div class="faq-item">
-            <button class="faq-question">ما هي سياسات الدفع؟</button>
-            <div class="faq-answer">
-                <p>نقبل الدفع عبر بطاقات الائتمان، والتحويلات المصرفية، وخدمات الدفع عبر الإنترنت مثل PayPal.</p>
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question">هل يمكنني إرجاع المنتج؟</button>
-            <div class="faq-answer">
-                <p>نعم، يمكنك إرجاع المنتج خلال 30 يومًا من تاريخ الشراء بشرط أن يكون في حالته الأصلية.</p>
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question">كيف يمكنني تتبع طلبي؟</button>
-            <div class="faq-answer">
-                <p>يمكنك تتبع طلبك من خلال الرابط الذي سيتم إرساله إليك عبر البريد الإلكتروني بعد الشحن.</p>
-            </div>
-        </div>
-    </section>
+  <!-- JavaScript -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-left">
-                <p>&copy; 2024 Astredia. جميع الحقوق محفوظة.</p>
-            </div>
-            <div class="footer-right">
-                <a href="#" class="social-icon">فيسبوك</a>
-                <a href="#" class="social-icon">تويتر</a>
-                <a href="#" class="social-icon">إنستجرام</a>
-            </div>
-        </div>
-    </footer>
-    <script>
-        // Select main image and thumbnails
-        const mainImage = document.querySelector('.main-image');
-        const thumbnails = document.querySelectorAll('.thumbnail');
+    // --- سلايدر الصور ---
+    let currentSlide = 0;
+    const sliderImages = document.getElementById('sliderImages');
+    const slides = document.querySelectorAll('#sliderImages img');
+    const totalSlides = slides.length;
 
-        // Add click event to each thumbnail
-        thumbnails.forEach((thumbnail) => {
-            thumbnail.addEventListener('click', () => {
-                // Update main image source
-                mainImage.src = thumbnail.src;
+    // توليد نقاط الدليل (دوتس) تلقائياً
+    const dotsContainer = document.querySelector('.slider-dots');
+    if (dotsContainer) {
+      dotsContainer.innerHTML = Array.from({length: totalSlides}, (_, i) => `
+        <button class="${i === 0 ? 'bg-white' : 'bg-gray-300'}" onclick="showSlide(${i})" aria-label="الصورة ${i+1}"></button>
+      `).join('');
+    }
 
-                // Remove active class from all thumbnails
-                thumbnails.forEach((thumb) => thumb.classList.remove('active'));
+    function showSlide(index) {
+      if (index < 0) currentSlide = totalSlides - 1;
+      else if (index >= totalSlides) currentSlide = 0;
+      else currentSlide = index;
+      sliderImages.style.transform = `translateX(-${currentSlide * 100}%)`;
+      updateDots();
+    }
 
-                // Add active class to the clicked thumbnail
-                thumbnail.classList.add('active');
-            });
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function updateDots() {
+      // إذا كانت نقاط الدليل موجودة
+      if (document.querySelectorAll('.slider-dots button').length > 0) {
+        document.querySelectorAll('.slider-dots button').forEach((dot, i) => {
+          dot.classList.toggle('bg-white', i === currentSlide);
+          dot.classList.toggle('bg-gray-300', i !== currentSlide);
         });
-    </script>
+      }
+    }
 
-    <script>
+    // --- إدارة التبويبات ---
+    function switchTab(event) {
+      event.preventDefault();
+      const tabId = event.currentTarget.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active', 'border-blue-500', 'text-blue-600');
+      });
+      event.currentTarget.classList.add('active', 'border-blue-500', 'text-blue-600');
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+      document.getElementById(tabId).classList.remove('hidden');
+    }
 
-        // JavaScript to toggle the FAQ answers
-        const faqQuestions = document.querySelectorAll('.faq-question');
+    // --- إدارة التعليقات ---
+    function addComment(event) {
+      event.preventDefault();
+      const commentText = document.getElementById('newComment').value.trim();
+      if (commentText.length < 10) {
+        alert('يرجى إدخال تعليق مفيد (على الأقل 10 أحرف)');
+        return;
+      }
+      const commentHTML = `
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-8 h-8 bg-blue-100 rounded-full"></div>
+            <strong>أنت</strong>
+            <span class="text-sm text-gray-500">الآن</span>
+          </div>
+          <p class="text-gray-700">${commentText}</p>
+        </div>
+      `;
+      // عرض التعليق الجديد أعلى التعليقات الموجودة
+      const reviewsSection = document.getElementById('reviews');
+      // إذا لم يكن هناك قسم يحتوي على مساحة للتعليقات، أنشئه
+      let commentsContainer = reviewsSection.querySelector('.space-y-4');
+      if (!commentsContainer) {
+        commentsContainer = document.createElement('div');
+        commentsContainer.className = 'space-y-4';
+        reviewsSection.prepend(commentsContainer);
+      }
+      commentsContainer.insertAdjacentHTML('afterbegin', commentHTML);
+      document.getElementById('commentForm').reset();
+    }
 
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', function () {
-                const answer = this.nextElementSibling;
-                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
-            });
-        });
+    // --- عرض منتجات أخرى ---
+    function renderOtherProducts() {
+      const container = document.getElementById('otherProductsGrid');
+      container.innerHTML = Array.from({ length: 4 }, (_, i) => `
+        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <img src="https://picsum.photos/300/300?random=${i+100}" loading="lazy" class="w-full h-48 object-cover" alt="منتج ${i+1}">
+          <div class="p-4">
+            <h3 class="font-bold mb-2">منتج ${i+1}</h3>
+            <p class="text-blue-600 font-bold">${(Math.random()*500 + 100).toFixed(0)} ر.س</p>
+            <button class="mt-2 w-full bg-gray-100 hover:bg-gray-200 py-2 rounded-lg transition-colors">
+              <i class="fas fa-cart-plus mr-2"></i>إضافة للسلة
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
 
-    </script>
+    // --- تهيئة أولية ---
+    document.addEventListener('DOMContentLoaded', () => {
+      renderOtherProducts();
+      AOS.init({ duration: 1000, once: true });
+    });
+  </script>
 </body>
-
 </html>

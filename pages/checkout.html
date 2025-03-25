@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة الدفع - متجر نكسا</title>
+  <!-- الروابط الخارجية -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #0087ff;
+      --secondary-color: #01e0c3;
+      --accent-color: #ffd700;
+    }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f9fafb;
+      scroll-behavior: smooth;
+    }
+    .gradient-text {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    /* نموذج الدفع */
+    .payment-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    .payment-form h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .payment-section {
+      margin-bottom: 1.5rem;
+    }
+    .payment-section label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .payment-section input,
+    .payment-section select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .payment-btn {
+      width: 100%;
+      background: var(--primary-color);
+      color: #fff;
+      padding: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 9999px;
+      transition: background 0.3s ease;
+    }
+    .payment-btn:hover {
+      background: #0073d6;
+    }
+    /* ملخص الطلب */
+    .order-summary {
+      background: #f3f4f6;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .order-summary h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- الهيدر -->
+  <header class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-3xl font-bold gradient-text">
+        <img src="https://dummyimage.com/150x50/0087ff/ffffff&text=Nexa" alt="Nexa Logo" class="h-12">
+      </a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="index.html" class="nav-link hover:text-[#01e0c3] transition">الرئيسية</a>
+        <a href="shop.html" class="nav-link hover:text-[#01e0c3] transition">المتجر</a>
+        <a href="blog.html" class="nav-link hover:text-[#01e0c3] transition">المدونة</a>
+        <a href="contact.html" class="nav-link hover:text-[#01e0c3] transition">اتصل بنا</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="cart.html" class="text-[#0087ff] relative">
+          <i class="fas fa-shopping-cart text-2xl"></i>
+          <span class="absolute -top-2 -right-2 bg-[#01e0c3] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+        </a>
+        <a href="login.html" class="bg-[#0087ff] text-white px-4 py-2 rounded-full hover:bg-[#0073d6] transition">تسجيل الدخول</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- محتوى صفحة الدفع -->
+  <main class="pt-32 pb-12">
+    <div class="container mx-auto px-4">
+      <div class="payment-form">
+        <h2 class="gradient-text">إتمام عملية الدفع</h2>
+        <!-- قسم تفاصيل الطلب -->
+        <div class="payment-section">
+          <h3 class="text-xl font-bold mb-4">ملخص الطلب</h3>
+          <div class="order-summary">
+            <div class="summary-item">
+              <span>المجموع الفرعي</span>
+              <span>$1200</span>
+            </div>
+            <div class="summary-item">
+              <span>الشحن</span>
+              <span>$50</span>
+            </div>
+            <div class="summary-item font-bold">
+              <span>الإجمالي</span>
+              <span>$1250</span>
+            </div>
+          </div>
+        </div>
+        <!-- قسم بيانات العميل -->
+        <div class="payment-section">
+          <h3 class="text-xl font-bold mb-4">بيانات العميل</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="fullName">الاسم الكامل</label>
+              <input type="text" id="fullName" placeholder="أدخل اسمك الكامل">
+            </div>
+            <div>
+              <label for="email">البريد الإلكتروني</label>
+              <input type="email" id="email" placeholder="example@mail.com">
+            </div>
+            <div>
+              <label for="address">العنوان</label>
+              <input type="text" id="address" placeholder="العنوان الكامل">
+            </div>
+            <div>
+              <label for="phone">رقم الهاتف</label>
+              <input type="tel" id="phone" placeholder="مثال: 0501234567">
+            </div>
+          </div>
+        </div>
+        <!-- قسم بيانات الدفع -->
+        <div class="payment-section">
+          <h3 class="text-xl font-bold mb-4">بيانات الدفع</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="cardName">اسم حامل البطاقة</label>
+              <input type="text" id="cardName" placeholder="اسم حامل البطاقة">
+            </div>
+            <div>
+              <label for="cardNumber">رقم البطاقة</label>
+              <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000">
+            </div>
+            <div>
+              <label for="expiryDate">تاريخ الانتهاء</label>
+              <input type="text" id="expiryDate" placeholder="MM/YY">
+            </div>
+            <div>
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" placeholder="000">
+            </div>
+          </div>
+        </div>
+        <!-- أزرار الدفع -->
+        <div class="payment-section">
+          <button class="payment-btn mb-4">شراء الآن</button>
+          <button class="payment-btn bg-gray-200 text-gray-700">الدفع عند الاستلام</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- الفوتر (يمكنك استخدام نفس الفوتر من الصفحات الأخرى) -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
+          <ul class="space-y-3">
+            <li><i class="fas fa-map-marker-alt text-[#01e0c3] mr-2"></i>الرياض، المملكة العربية السعودية</li>
+            <li><i class="fas fa-phone text-[#01e0c3] mr-2"></i>+966 123 456 789</li>
+            <li><i class="fas fa-envelope text-[#01e0c3] mr-2"></i>info@nexa.com</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+          <ul class="space-y-3">
+            <li><a href="about.html" class="hover:text-[#01e0c3] transition">عن نكسا</a></li>
+            <li><a href="faq.html" class="hover:text-[#01e0c3] transition">الأسئلة الشائعة</a></li>
+            <li><a href="terms.html" class="hover:text-[#01e0c3] transition">الشروط والأحكام</a></li>
+            <li><a href="privacy.html" class="hover:text-[#01e0c3] transition">سياسة الخصوصية</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xl font-bold mb-4">تابعنا</h4>
+          <div class="flex space-x-4">
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-snapchat"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+          <div class="mt-6">
+            <img src="https://via.placeholder.com/200x80.png?text=Download+Our+App" loading="lazy" alt="Download App" class="rounded-lg">
+          </div>
+        </div>
+        <div>
+          <h4 class="text-xl font-bold mb-4">النشرة البريدية</h4>
+          <form class="flex flex-col space-y-3">
+            <input type="email" placeholder="بريدك الإلكتروني" class="px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-[#01e0c3] text-gray-900">
+            <button type="submit" class="bg-[#0087ff] hover:bg-[#0073d6] text-white px-4 py-2 rounded-full">اشترك الآن</button>
+          </form>
+        </div>
+      </div>
+      <hr class="my-8 border-gray-700">
+      <div class="flex flex-col md:flex-row justify-between items-center text-center space-y-4 md:space-y-0">
+        <div class="flex space-x-4">
+          <img src="https://via.placeholder.com/50x30.png?text=VISA" loading="lazy" alt="VISA">
+          <img src="https://via.placeholder.com/50x30.png?text=MC" loading="lazy" alt="MasterCard">
+          <img src="https://via.placeholder.com/50x30.png?text=MADA" loading="lazy" alt="MADA">
+        </div>
+        <p class="text-gray-400">© 2024 نكسا. جميع الحقوق محفوظة | تصميم وتطوير <a href="#" class="text-[#01e0c3]">فريق نكسا</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
