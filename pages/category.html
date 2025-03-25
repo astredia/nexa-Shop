@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astredia - ملابس</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="shortcut icon" href="../imgs/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../lib/awesome/css/all.min.css">
+    <style>
+        .container {
+            position: relative;
+            width: 80%;
+            height: 400px;
+            background-image: url("../categories/men's.jpg");
+            background-size: cover;
+            background-position: top;
+            margin: 0 auto;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* تغطية داكنة لإظهار النص */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .content {
+            max-width: 80%;
+        }
+
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .content p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-shop {
+            padding: 12px 30px;
+            background-color: #0087ff;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 600;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-shop:hover {
+            background-color: #01e0c3;
+        }
+
+        /* Responsive for smaller screens */
+        @media (max-width: 768px) {
+            .container {
+                height: 300px;
+                margin-top: 40px;
+            }
+
+            .content h2 {
+                font-size: 1.5rem;
+            }
+
+            .content p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="nav-bar">
+        <div class="logo-header">
+            <h1 class="primary-text"><b>Astredia</b> - <i><span>Shop</span></i></h1>
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="#"><b>الرئيسية</b></a></li>
+                <li><a href="#"><b>المتجر</b></a></li>
+                <li class="li-category">
+                    <a href="#categories"><b>الفئات</b></a>
+                    <ul class="dropdown">
+                        <li><a href="#">رجال</a></li>
+                        <li><a href="#">نساء</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form action="#" method="get">
+                <input type="search" name="search" class="search" placeholder="بحث......">
+            </form>
+        </div>
+        <hr class="hr-header">
+    </section>
+    <br>
+
+    <div class="container">
+        <div class="overlay">
+            <div class="content">
+                <h2>أفضل العروض على منتجاتنا</h2>
+                <p>استمتع بتسوق منتجاتنا الرائعة بأسعار مذهلة.</p>
+                <button class="btn-shop">تسوق الآن</button>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="heading">
+        <h1 class="secondary-text">المنتجات (ملابس)</h1>
+    </div>
+    <br>
+
+    <section class="products">
+        <div class="product">
+            <div class="product-img">
+                <img src="../pages/stores/Astredia/1.avif" alt="" srcset="">
+            </div>
+            <div class="product-detiles">
+                <h2><a href="pages/product.html">سروال</a></h2>
+                <br>
+                <h3>السعر : 50$</h3>
+                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-img">
+                <div class="discount">
+                    <h3>وفر 50%</h3>
+                </div>
+                <img src="../pages/stores/Astredia/1.avif" alt="" srcset="">
+            </div>
+            <div class="product-detiles">
+                <h2><a href="">سروال</a></h2>
+                <br>
+                <h3>السعر : 30$ <sup><del>50$</del></sup></h3>
+                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-img">
+                <img src="../pages/stores/Astredia/1.avif" alt="" srcset="">
+            </div>
+            <div class="product-detiles">
+                <h2><a href="">سروال</a></h2>
+                <br>
+                <h3>السعر : 50$</h3>
+                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-img">
+                <img src="../pages/stores/Astredia/1.avif" alt="" srcset="">
+            </div>
+            <div class="product-detiles">
+                <h2><a href="">سروال</a></h2>
+                <br>
+                <h3>السعر : 50$</h3>
+                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-img">
+                <div class="discount">
+                    <h3>وفر 50%</h3>
+                </div>
+                <img src="../pages/stores/Astredia/1.avif" alt="" srcset="">
+            </div>
+            <div class="product-detiles">
+                <h2><a href="">سروال</a></h2>
+                <br>
+                <h3>السعر : 30$ <sup><del>50$</del></sup></h3>
+                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-img">
+                <img src="../pages/stores/Astredia/1.avif" alt="" srcset="">
+            </div>
+            <div class="product-detiles">
+                <h2><a href="">سروال</a></h2>
+                <br>
+                <h3>السعر : 50$</h3>
+                <p>تم بيع 7 قطع الي الان ! <strong><sup><a href="#">من Astredia</a></sup></strong></p>
+            </div>
+        </div>
+        <hr class="hr-header">
+    </section>
+
+    <br>
+
+    <section class="faq-section">
+        <div class="faq-item">
+            <button class="faq-question">ما هي سياسات الدفع؟</button>
+            <div class="faq-answer">
+                <p>نقبل الدفع عبر بطاقات الائتمان، والتحويلات المصرفية، وخدمات الدفع عبر الإنترنت مثل PayPal.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">هل يمكنني إرجاع المنتج؟</button>
+            <div class="faq-answer">
+                <p>نعم، يمكنك إرجاع المنتج خلال 30 يومًا من تاريخ الشراء بشرط أن يكون في حالته الأصلية.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">كيف يمكنني تتبع طلبي؟</button>
+            <div class="faq-answer">
+                <p>يمكنك تتبع طلبك من خلال الرابط الذي سيتم إرساله إليك عبر البريد الإلكتروني بعد الشحن.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2024 Astredia. جميع الحقوق محفوظة.</p>
+            </div>
+            <div class="footer-right">
+                <a href="#" class="social-icon">فيسبوك</a>
+                <a href="#" class="social-icon">تويتر</a>
+                <a href="#" class="social-icon">إنستجرام</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript to toggle the FAQ answers
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function () {
+                const answer = this.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+    </script>
+</body>
+
+</html>

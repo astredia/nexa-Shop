@@ -1,0 +1,813 @@
+/******* My codes **********/
+
+.primary-text {
+    background: linear-gradient(to right, #0087ff, #01e0c3);
+    font-size: 1.7em;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.secondary-text {
+    color: #0087ff;
+    font-size: 2rem;
+    letter-spacing: 10px;
+    -webkit-text-stroke-width: thin#0087ff;
+}
+
+.a-text {
+    color: #0087ff;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.a-text:hover {
+    color: #01e0c3;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.a-text a {
+    color: #0087ff;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.a-text a:hover {
+    color: #01e0c3;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.ul {
+    list-style-type: none;
+    display: flex;
+    direction: rtl;
+    /* للتأكد من أن القوائم تظهر من اليمين لليسار */
+}
+
+.ul li {
+    padding: 0.5vh;
+    display: flex;
+    align-items: center;
+    margin-left: 3vh;
+}
+
+.heading {
+    text-align: center;
+}
+
+@keyframes start {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.anime-start {
+    animation: start 2s;
+    /* اسم الحركة والمدة */
+}
+
+/******* Contener *****/
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: #edf2ff;
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    /* يجعل جميع النصوص من اليمين لليسار */
+
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-image: url('../imgs/hero/1.jpg');
+    /* استبدل الرابط بصورة خاصة بك */
+    background-size: cover;
+    background-position: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* تغطية داكنة لإظهار النص */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.content {
+    max-width: 80%;
+}
+
+.content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-shop {
+    padding: 12px 30px;
+    background-color: #0087ff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-shop:hover {
+    background-color: #01e0c3;
+}
+
+/************* Nav Bar *********/
+
+.nav-bar {
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.nav-bar .logo-header h1 {
+    background: linear-gradient(to right, #0087ff, #01e0c3);
+    font-size: 1.7em;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-bar .logo-header h1 span {
+    font-size: 0.8em
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: auto;
+    height: 6vh;
+    direction: rtl;
+    font-size: 1.3rem;
+    align-items: center;
+}
+
+input.search {
+    border: 2px solid #0089fe;
+    height: 4vh;
+    width: 100%;
+    font-size: 1.3rem;
+    text-align: center;
+    direction: ltr;
+    border-radius: 20px;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links ul li {
+    padding: 0.5vh;
+    display: flex;
+    align-items: center;
+    margin-left: 3vh;
+}
+
+.nav-links ul li a {
+    color: #0087ff;
+    text-decoration: none;
+    transition: .4s;
+    direction: rtl;
+    /* نص من اليمين لليسار */
+}
+
+.nav-links ul li a:hover {
+    color: #01e0c3;
+    text-decoration: none;
+    transition: .4s;
+}
+
+.nav-links ul .dropdown {
+    display: none;
+    position: absolute;
+    top: 90%;
+    /* left: 0; */
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    z-index: 100;
+    transition: .4s;
+
+}
+
+.nav-links ul .dropdown li {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+}
+
+.nav-links ul .dropdown li a {
+    color: #0087ff;
+    font-size: 1rem;
+}
+
+.nav-links ul .dropdown li a:hover {
+    color: #01e0c3;
+}
+
+.nav-links ul li:hover .dropdown {
+    display: block;
+    transition: .4s;
+}
+
+.hr-header {
+    width: 80%;
+    border: none;
+    /* إزالة الشكل الافتراضي */
+    height: 4px;
+    /* ضبط ارتفاع الخط */
+    background: linear-gradient(to right, #0087ff, #01e0c3, #0087ff);
+    /* إضافة التدرج اللوني */
+    border-radius: 2px;
+    /* جعل الحواف مستديرة */
+    margin: 1rem auto;
+}
+
+
+
+/************* Hero *********/
+
+.hero {
+    width: 70%;
+    /* زيادة عرض القسم لتحسين التناسق */
+    height: 60vh;
+    /* ارتفاع أفضل للمظهر */
+    background: #f5f5f5;
+    /* لون خلفية خفيف لتحسين التباين */
+    display: flex;
+    gap: 1rem;
+    /* مسافة بين الصور */
+    margin: 10px auto;
+    /* توسيط القسم */
+    align-items: stretch;
+    /* جميع العناصر بنفس الارتفاع */
+}
+
+/* الصورة الأولى */
+.hero-item.hero-large {
+    flex: 0 0 45%;
+    /* تأخذ 45% من العرض */
+    height: 100%;
+    /* ارتفاع العنصر بالكامل */
+    overflow: hidden;
+    /* إخفاء أي جزء زائد من الصورة */
+    border-radius: 8px;
+    /* زوايا مستديرة */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* ظل خفيف */
+}
+
+.hero-item.hero-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* تغطية العنصر بدون تشويه */
+}
+
+/* الصور الصغيرة */
+.hero-item.hero-small {
+    flex: 0 0 55%;
+    /* تأخذ 55% من العرض */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    /* مسافة بين الصور */
+}
+
+.hero-item.hero-small .small-img {
+    flex: 1;
+    /* كل صورة تأخذ نفس الحجم */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* ظل خفيف */
+}
+
+.hero-item.hero-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    /* تأثير عند التمرير */
+}
+
+.hero-item.hero-small img:hover {
+    transform: scale(1.05);
+    /* تكبير بسيط عند التمرير */
+}
+
+
+/************* Our Advantages *********/
+
+.features-bar {
+    width: 90%;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.feature-item {
+    text-align: center;
+    width: 20%;
+    /* ضبط العرض النسبي لكل ميزة */
+    color: #333;
+    font-family: 'Cairo', sans-serif;
+}
+
+.feature-item i {
+    font-size: 2rem;
+    /* حجم الأيقونة */
+    color: #0087ff;
+    margin-bottom: 0.5rem;
+}
+
+.feature-item p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.feature-item strong {
+    color: #0087ff;
+}
+
+/************* Categories *********/
+.categories-bar {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.category-item {
+    width: 15%;
+    position: relative;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-item:hover img {
+    transform: scale(1.2);
+    /* تكبير العنصر عند التحويم */
+}
+
+.categories-bar img {
+    width: 100%;
+    height: 40vh;
+    border-radius: 14px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.category-item h3 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-decoration: none;
+
+    text-align: center;
+}
+
+/************* Products *********/
+
+.products {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.product {
+    width: 26%;
+    position: relative;
+    height: 60vh;
+    /* زيادة الارتفاع ليشمل تفاصيل المنتج */
+    margin-bottom: 2rem;
+    /* إضافة تباعد بين المنتجات */
+    background-color: #fff;
+    /* لون خلفية أبيض */
+    border-radius: 10px;
+    /* حواف مستديرة */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* تأثير الظلال */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* تأثير عند التحويم */
+    overflow-x: overlay;
+}
+
+.product:hover {
+    transform: translateY(-10px);
+    /* تحريك خفيف عند التحويم */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    /* زيادة الظلال عند التحويم */
+}
+
+.product-img {
+    width: 100%;
+    height: 70%;
+    /* تعديل الارتفاع ليناسب الصورة */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* يجعل الصورة تغطي العنصر بشكل متناسق */
+}
+
+.product-detiles {
+    padding: 1rem;
+    text-align: center;
+}
+
+.product-detiles h2 {
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.product-detiles h2 a {
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.product-detiles h3 {
+    font-size: 1.2rem;
+    color: #0087ff;
+}
+
+.product-detiles p {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.product-detiles strong {
+    color: #01e0c3;
+}
+
+.product-detiles strong a {
+    color: #01e0c3;
+    text-decoration: none;
+}
+
+.discount {
+    position: absolute;
+    color: white;
+    top: 4%;
+    left: 0%;
+    background: linear-gradient(to right, #0087ff, #01e0c3);
+    width: 25%;
+    text-align: end;
+    padding: 6px;
+}
+
+del {
+    color: #01e0c3;
+}
+
+/************* posts *********/
+
+.posts {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.post {
+    width: 26%;
+    position: relative;
+    height: 60vh;
+    /* زيادة الارتفاع ليشمل تفاصيل المنتج */
+    margin-bottom: 2rem;
+    /* إضافة تباعد بين المنتجات */
+    background-color: #fff;
+    /* لون خلفية أبيض */
+    border-radius: 10px;
+    /* حواف مستديرة */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* تأثير الظلال */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* تأثير عند التحويم */
+}
+
+.post:hover {
+    transform: translateY(-10px);
+    /* تحريك خفيف عند التحويم */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    /* زيادة الظلال عند التحويم */
+}
+
+.post-img {
+    width: 100%;
+    height: 70%;
+    /* تعديل الارتفاع ليناسب الصورة */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+}
+
+.post-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* يجعل الصورة تغطي العنصر بشكل متناسق */
+}
+
+.post-detiles {
+    padding: 1rem;
+    text-align: center;
+}
+
+.post-detiles h2 {
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.post-detiles p {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+
+
+.discount {
+    position: absolute;
+    color: white;
+    top: 4%;
+    left: 0%;
+    background: linear-gradient(to right, #0087ff, #01e0c3);
+    width: 25%;
+    text-align: center;
+    padding: 6px;
+}
+
+
+
+/************* FAQ *********/
+.reviews-section {
+    background-color: #f9f9f9;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.reviews-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.review-item {
+    background-color: #fff;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.review-stars {
+    color: #FFD700;
+    /* اللون الذهبي للنجوم */
+}
+
+.star {
+    font-size: 1.5rem;
+}
+
+.review-name {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.review-content {
+    font-size: 1rem;
+    color: #555;
+}
+
+.review-content p {
+    margin: 0;
+}
+
+/************* FAQ *********/
+
+.faq-section {
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item {
+    margin: 1rem 0;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    font-size: 1.2rem;
+    background-color: #fff;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+    background-color: #f1f1f1;
+}
+
+.faq-answer {
+    display: none;
+    padding: 1rem;
+    background-color: #f4f4f4;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.faq-answer p {
+    color: #555;
+}
+
+
+
+/************* Footer *********/
+.footer {
+    background: linear-gradient(to right, #0087ff, #01e0c3);
+    color: #fff;
+    padding: 2rem 5%;
+    text-align: center;
+    position: relative;
+    margin-top: 3rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    font-size: 1rem;
+}
+
+.footer-right {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 1.1rem;
+    margin: 0 1rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #FFC270;
+}
+
+/************* Responsive Design *********/
+/******* تحسين التصميم المتجاوب *********/
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+    }
+
+    .product,
+    .post {
+        flex: 1 1 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+    }
+
+    .category-item,
+    .feature-item {
+        flex: 1 1 calc(33.33% - 1rem);
+        max-width: calc(33.33% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        height: 300px;
+        margin-top: 40px;
+    }
+
+    .content h2 {
+        font-size: 1.5rem;
+    }
+
+    .content p {
+        font-size: 0.9rem;
+    }
+
+    .product,
+    .post {
+        flex: 1 1 100%;
+        max-width: 45%;
+    }
+
+    .category-item,
+    .feature-item {
+        flex: 1 1 50%;
+        max-width: 45%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .category-item,
+    .feature-item,
+    .product,
+    .post {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}

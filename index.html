@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نكسا - المنصة الشاملة للتجارة الإلكترونية</title>
+
+    <!-- الروابط الخارجية -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #0087ff, #01e0c3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .loading-overlay {
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 9999;
+        }
+
+        :root {
+            --primary-color: #0087ff;
+            --secondary-color: #01e0c3;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .loading-overlay {
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 9999;
+        }
+
+        /* تنسيق عناصر البحث والروابط */
+        .nav-link {
+            position: relative;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* تأخيرات انيميشن بسيطة */
+        .animate-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .animate-delay-600 {
+            animation-delay: 0.6s;
+        }
+
+
+        .product:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 overflow-x-hidden">
+
+    <!-- شريط التحميل -->
+    <div class="loading-overlay fixed inset-0 hidden justify-center items-center">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jk6c1n2n.json" background="transparent"
+            speed="1" style="width: 200px; height: 200px;" loop autoplay>
+        </lottie-player>
+    </div>
+
+    <!-- الهيدر -->
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm" id="mainHeader">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold gradient-text">نكسا</a>
+
+            <div class="hidden lg:flex items-center">
+                <a href="#home" class="nav-link hover:text-[#01e0c3]">الرئيسية</a>
+                <a href="pages/neksa.html" class="nav-link hover:text-[#01e0c3]">المتجر</a>
+                <a href="#vendors" class="nav-link hover:text-[#01e0c3]">التجار</a>
+                <a href="#blog" class="nav-link hover:text-[#01e0c3]">المدونة</a>
+                <a href="#contact" class="nav-link hover:text-[#01e0c3]">اتصل بنا</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <input type="text" id="searchInput"
+                        class="w-48 px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-[#01e0c3]"
+                        placeholder="ابحث هنا...">
+                    <div id="searchResults" class="absolute top-full mt-2 w-full bg-white shadow-lg rounded-lg hidden">
+                    </div>
+                </div>
+                <a href="cart.html" class="text-[#0087ff] relative">
+                    <i class="fas fa-shopping-cart text-2xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-[#01e0c3] text-white rounded-full w-5 h-5 
+                            flex items-center justify-center text-xs">3</span>
+                </a>
+                <a href="login.html" class="bg-[#0087ff] text-white px-4 py-2 rounded-full hover:bg-[#0073d6]">
+                    تسجيل الدخول
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <main>
+        <!-- قسم الهيرو -->
+        <section class="pt-32 pb-24" id="home">
+            <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0" data-aos="fade-right">
+                    <h1 class="text-5xl font-bold mb-6 leading-tight">
+                        <span class="gradient-text">تجربة تسوق</span>
+                        تفوق التوقعات
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">اكتشف عالمًا من المنتجات المميزة من أفضل التجار</p>
+                    <button class="bg-[#0087ff] text-white px-8 py-3 rounded-full hover:bg-[#0073d6] transition-all">
+                        <a href="pages/shop.html">ابدأ التسوق الآن</a>
+                    </button>
+                </div>
+
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <div
+                        class="product-slider relative h-96 w-full rounded-3xl shadow-2xl transform hover:rotate-1 transition-transform">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-[#0087ff] to-[#01e0c3] opacity-20 rounded-3xl">
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e" loading="lazy"
+                            class="absolute inset-0 w-full h-full object-cover rounded-3xl" alt="Product">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم المميزات -->
+        <section class="py-24 bg-gray-50" id="features">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">لماذا نكسا؟</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="feature-card p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all"
+                        data-aos="flip-left">
+                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json"
+                            background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay>
+                        </lottie-player>
+                        <h3 class="text-xl font-bold my-4">تجربة مستخدم فريدة</h3>
+                        <p class="text-gray-600">واجهة مستخدم حديثة وسهلة الاستخدام</p>
+                    </div>
+                    <!-- تكرار البطاقات الأخرى -->
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم المتجر -->
+        <section class="py-24" id="products">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">أحدث المنتجات</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <!-- المنتجات تُعبأ عبر JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم التجار -->
+        <section class="py-24 bg-gray-50" id="vendors">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">التجار المميزون</h2>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="vendor-card p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" loading="lazy"
+                            class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#01e0c3]">
+                        <h3 class="text-xl font-bold text-center">متجر التقنية</h3>
+                        <div class="flex justify-center my-2 text-[#ffd700]">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <!-- تكرار البطاقات -->
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم المدونة -->
+        <section class="py-24" id="blog">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">آخر المقالات</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643" loading="lazy"
+                            class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">نصائح للتسوق الذكي</h3>
+                            <p class="text-gray-600 mb-4">تعلم كيفية اتخاذ قرارات شراء ذكية...</p>
+                            <a href="#" class="text-[#0087ff] hover:text-[#01e0c3] transition">اقرأ المزيد →</a>
+                        </div>
+                    </article>
+                    <!-- تكرار المقالات -->
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الأسئلة الشائعة -->
+        <section class="py-24 bg-gray-50" id="faq">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">الأسئلة الشائعة</h2>
+                <div class="space-y-4">
+                    <div
+                        class="faq-item bg-white rounded-xl shadow-md p-6 cursor-pointer hover:shadow-lg transition-all">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold">كيفية إرجاع المنتج؟</h3>
+                            <i class="fas fa-chevron-down text-[#0087ff]"></i>
+                        </div>
+                        <p class="mt-4 text-gray-600 hidden">يمكنك إرجاع المنتج خلال 14 يومًا...</p>
+                    </div>
+                    <!-- تكرار الأسئلة -->
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الاتصال -->
+        <section class="py-24" id="contact">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-4xl font-bold text-center mb-12 gradient-text">اتصل بنا</h2>
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="الاسم الكامل"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#01e0c3]">
+                        <input type="email" placeholder="البريد الإلكتروني"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#01e0c3]">
+                    </div>
+                    <textarea rows="5" placeholder="الرسالة"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#01e0c3]"></textarea>
+                    <button class="w-full bg-[#0087ff] text-white py-3 rounded-lg hover:bg-[#0073d6] transition-all">
+                        إرسال الرسالة
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- معلومات الاتصال -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <i class="fas fa-map-marker-alt text-[#01e0c3] mr-2"></i>
+                            الرياض، المملكة العربية السعودية
+                        </li>
+                        <li>
+                            <i class="fas fa-phone text-[#01e0c3] mr-2"></i>
+                            +966 123 456 789
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope text-[#01e0c3] mr-2"></i>
+                            info@nexa.com
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="hover:text-[#01e0c3] transition">عن نكسا</a></li>
+                        <li><a href="faq.html" class="hover:text-[#01e0c3] transition">الأسئلة الشائعة</a></li>
+                        <li><a href="terms.html" class="hover:text-[#01e0c3] transition">الشروط والأحكام</a></li>
+                        <li><a href="privacy.html" class="hover:text-[#01e0c3] transition">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+
+                <!-- وسائل التواصل -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4">تابعنا</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-snapchat"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="mt-6">
+                        <img src="imgs/downloads/googleplay.png"
+                            loading="lazy" alt="Download App" class="rounded-lg" width="70%">
+                    </div>
+                </div>
+
+                <!-- النشرة البريدية -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4">النشرة البريدية</h4>
+                    <form class="flex flex-col space-y-3">
+                        <input type="email" placeholder="بريدك الإلكتروني"
+                            class="px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-[#01e0c3] text-gray-900">
+                        <button type="submit" class="bg-[#0087ff] hover:bg-[#0073d6] text-white px-4 py-2 rounded-full">
+                            اشترك الآن
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <hr class="my-8 border-gray-700">
+
+            <div class="flex flex-col md:flex-row justify-between items-center text-center space-y-4 md:space-y-0">
+                <div class="flex"
+                    style="display: flex; flex-wrap: wrap; align-content: center;  justify-content: space-evenly;  align-items: center; flex-direction: row; width: 15%;">
+                    <img src="imgs/payments/fawry.png" loading="lazy" alt="Payment Methods"
+                        style="height: 40px; border-radius: 50%;">
+                    <img src="imgs/payments/visa.png" loading="lazy" alt="Payment Methods"
+                        style="height: 40px; border-radius: 50%;">
+                    <img src="imgs/payments/paypal.webp" loading="lazy" alt="Payment Methods"
+                        style="height: 40px; border-radius: 50%;">
+                </div>
+                <p class="text-gray-400">
+                    © 2024 نكسا. جميع الحقوق محفوظة | تصميم وتطوير <a href="#" class="text-[#01e0c3]">فريق نكسا</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // بيانات وهمية
+        const products = [
+            {
+                id: 1,
+                name: "سماعات لاسلكية",
+                price: 199,
+                rating: 4.5,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
+                vendor: "متجر التقنية"
+            },
+            // ... إضافة المزيد من المنتجات
+        ];
+
+        // توليد النجوم
+        function generateStars(rating) {
+            return Array.from({ length: 5 }, (_, i) =>
+                `<i class="fas fa-star ${i < rating ? 'text-[#ffd700]' : 'text-gray-300'}"></i>`
+            ).join('');
+        }
+
+        // عرض المنتجات
+        function renderProducts() {
+            const container = document.querySelector('#products .grid');
+            container.innerHTML = products.map(product => `
+                <div class="product-card relative group overflow-hidden rounded-2xl shadow-lg 
+                          hover:shadow-xl transition-all" data-aos="fade-up">
+                    <img src="${product.image}" 
+                         loading="lazy" 
+                         class=" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold">${product.name}</h3>
+                        <div class="my-2">${generateStars(product.rating)}</div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[#0087ff] text-xl font-bold">$${product.price}</span>
+                            <button class="bg-[#01e0c3] text-white px-4 py-2 rounded-full hover:bg-[#00c7ad]">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // البحث
+        $('#searchInput').on('input', function () {
+            const term = $(this).val().toLowerCase();
+            const results = products.filter(p => p.name.toLowerCase().includes(term));
+            $('#searchResults').html(results.map(p => `
+                <div class="p-4 hover:bg-gray-100 cursor-pointer">${p.name} - $${p.price}</div>
+            `).join('')).toggleClass('hidden', !term);
+        });
+
+        // تهيئة AOS
+        AOS.init({
+            duration: 1000,
+            once: false
+        });
+
+        // تحميل أولي
+        $(document).ready(() => {
+            renderProducts();
+            $('.loading-overlay').hide();
+        });
+
+        // إدارة الأسئلة
+        $('.faq-item').click(function () {
+            $(this).find('p').slideToggle();
+            $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+        });
+
+        // تأثيرات التمرير للهيدر
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            window.scrollY > 100 ?
+                header.classList.add('shadow-lg', 'bg-white') :
+                header.classList.remove('shadow-lg', 'bg-white');
+        });
+    </script>
+</body>
+
+</html>

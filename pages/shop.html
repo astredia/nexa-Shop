@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نكسا - المتجر</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #0087ff, #01e0c3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .filter-sidebar {
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 1024px) {
+            .filter-sidebar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                z-index: 100;
+                overflow-y: auto;
+                padding: 1rem;
+            }
+
+            .filter-sidebar.active {
+                right: 0;
+            }
+
+            .filter-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 99;
+            }
+        }
+
+        .pagination-btn.active {
+            background: #0087ff;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- زر الفلاتر للجوّال -->
+    <div class="lg:hidden fixed bottom-6 left-6 z-50">
+        <button onclick="toggleFilters()" class="bg-[#0087ff] text-white p-4 rounded-full shadow-lg">
+            <i class="fas fa-filter"></i>
+        </button>
+    </div>
+
+    <!-- طبقة التعتم للجوّال -->
+    <div class="filter-overlay" onclick="toggleFilters()"></div>
+
+    <main class="pt-32 pb-12">
+        <div class="container mx-auto px-6">
+            <div class="lg:flex gap-8">
+                <!-- شريط الفلاتر الجانبي -->
+                <aside class="filter-sidebar lg:w-64 mb-8 lg:mb-0 bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-4 gradient-text">تصفية النتائج</h3>
+
+                    <!-- فلتر الفئات -->
+                    <div class="mb-6">
+                        <h4 class="font-bold mb-2">الفئات</h4>
+                        <select id="categoryFilter" class="w-full p-2 border rounded-lg">
+                            <option value="all">الكل</option>
+                            <option value="electronics">إلكترونيات</option>
+                            <option value="fashion">موضة</option>
+                            <option value="home">منزلية</option>
+                        </select>
+                    </div>
+
+                    <!-- فلتر السعر -->
+                    <div class="mb-6">
+                        <h4 class="font-bold mb-2">نطاق السعر</h4>
+                        <div class="flex gap-2">
+                            <input type="number" id="minPrice" placeholder="الحد الأدنى"
+                                class="w-1/2 p-2 border rounded-lg">
+                            <input type="number" id="maxPrice" placeholder="الحد الأقصى"
+                                class="w-1/2 p-2 border rounded-lg">
+                        </div>
+                    </div>
+
+                    <!-- فلتر التقييم -->
+                    <div class="mb-6">
+                        <h4 class="font-bold mb-2">التقييم</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rating-filter" value="4">
+                                <span class="mr-2">4 نجوم فأعلى</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rating-filter" value="3">
+                                <span class="mr-2">3 نجوم فأعلى</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- زر تطبيق الفلاتر -->
+                    <button onclick="applyFilters()"
+                        class="w-full bg-[#0087ff] text-white py-2 rounded-lg hover:bg-[#0073d6]">
+                        تطبيق الفلاتر
+                    </button>
+                </aside>
+
+                <!-- قائمة المنتجات -->
+                <div class="flex-1">
+                    <!-- شريط الترتيب -->
+                    <div class="bg-white p-4 rounded-xl shadow-md mb-6">
+                        <div class="flex flex-wrap gap-4 items-center">
+                            <span class="font-bold">ترتيب حسب:</span>
+                            <select id="sortBy" class="p-2 border rounded-lg" onchange="sortProducts()">
+                                <option value="default">الإفتراضي</option>
+                                <option value="price_asc">السعر من الأقل للأعلى</option>
+                                <option value="price_desc">السعر من الأعلى للأقل</option>
+                                <option value="rating">الأعلى تقييماً</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- المنتجات -->
+                    <div id="productsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- المنتجات تُعبأ عبر JavaScript -->
+                    </div>
+
+                    <!-- ترقيم الصفحات -->
+                    <div class="mt-8 flex justify-center gap-2" id="paginationContainer"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // بيانات وهمية موسّعة
+        const allProducts = Array.from({ length: 50 }, (_, i) => ({
+            id: i + 1,
+            name: `منتج ${i + 1}`,
+            category: ['electronics', 'fashion', 'home'][Math.floor(Math.random() * 3)],
+            price: Math.floor(Math.random() * 500) + 50,
+            rating: Number((Math.random() * 3 + 2).toFixed(1)),
+            discount: Math.random() > 0.7 ? Math.floor(Math.random() * 30) + 10 : 0,
+            vendor: ['متجر التقنية', 'موضة أونلاين', 'ديكورات المنزل'][Math.floor(Math.random() * 3)],
+            image: `https://picsum.photos/300/200?random=${i}`
+        }));
+
+        // متغيرات الحالة
+        let currentPage = 1;
+        const itemsPerPage = 9;
+        let filteredProducts = [...allProducts];
+
+        // توليد المنتجات مع Pagination
+        function renderProducts() {
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const productsToShow = filteredProducts.slice(start, end);
+
+            const container = document.getElementById('productsContainer');
+            container.classList.add('opacity-0');
+
+            setTimeout(() => {
+                container.innerHTML = productsToShow.map(product => `
+                    <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+                        ${product.discount ? `
+                            <div class="absolute top-2 left-2 bg-[#01e0c3] text-white px-3 py-1 rounded-full text-sm">
+                                خصم ${product.discount}%
+                            </div>` : ''
+                    }
+                        <img src="${product.image}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <span class="text-sm text-gray-500">${product.vendor}</span>
+                                    <h3 class="font-bold text-lg">${product.name}</h3>
+                                </div>
+                                <span class="text-sm bg-gray-100 px-2 py-1 rounded">${product.category}</span>
+                            </div>
+
+                            <div class="flex items-center mb-2">
+                                ${generateStars(product.rating)}
+                                <span class="text-sm text-gray-500 mr-2">(${product.rating})</span>
+                            </div>
+
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    ${product.discount ? `
+                                        <span class="text-gray-400 line-through mr-2">$${product.price}</span>
+                                        <span class="text-[#0087ff] font-bold">
+                                            $${product.price - (product.price * product.discount / 100)}
+                                        </span>
+                                    ` : `
+                                        <span class="text-[#0087ff] font-bold">$${product.price}</span>
+                                    `}
+                                </div>
+                                <button class="bg-[#01e0c3] text-white px-4 py-2 rounded-lg hover:bg-[#00c7ad]">
+                                    عرض التفاصيل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                container.classList.remove('opacity-0');
+                renderPagination();
+            }, 300);
+        }
+
+        // توليد ترقيم الصفحات
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+            const container = document.getElementById('paginationContainer');
+            let html = '';
+
+            if (totalPages > 1) {
+                for (let i = 1; i <= totalPages; i++) {
+                    html += `
+                        <button onclick="changePage(${i})" 
+                                class="pagination-btn ${i === currentPage ? 'active' : ''} 
+                                px-4 py-2 rounded-lg shadow-md transition-all">
+                            ${i}
+                        </button>
+                    `;
+                }
+            }
+            container.innerHTML = html;
+        }
+
+        // تغيير الصفحة مع تأثير
+        function changePage(page) {
+            currentPage = page;
+            renderProducts();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // تحسين تطبيق الفلاتر مع Debounce
+        let filterTimeout;
+        function applyFilters() {
+            clearTimeout(filterTimeout);
+            filterTimeout = setTimeout(() => {
+                const category = document.getElementById('categoryFilter').value;
+                const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+                const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+                const ratingFilters = [...document.querySelectorAll('.rating-filter:checked')]
+                    .map(input => parseFloat(input.value));
+
+                filteredProducts = allProducts.filter(product => {
+                    return (category === 'all' || product.category === category) &&
+                        product.price >= minPrice &&
+                        product.price <= maxPrice &&
+                        (ratingFilters.length === 0 || ratingFilters.some(r => product.rating >= r));
+                });
+
+                currentPage = 1;
+                renderProducts();
+            }, 300);
+        }
+
+        // إدارة الفلاتر على الجوّال
+        function toggleFilters() {
+            const sidebar = document.querySelector('.filter-sidebar');
+            const overlay = document.querySelector('.filter-overlay');
+            sidebar.classList.toggle('active');
+            overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+        }
+
+        // توليد النجوم
+        function generateStars(rating) {
+            return Array.from({ length: 5 }, (_, i) =>
+                `<i class="fas fa-star ${i < rating ? 'text-[#ffd700]' : 'text-gray-300'}"></i>`
+            ).join('');
+        }
+
+        // تهيئة أولية
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            window.generateStars = generateStars;
+
+            const sortSelect = document.getElementById('sortBy');
+            sortSelect.addEventListener('change', () => {
+                document.getElementById('productsContainer').classList.add('opacity-0');
+                setTimeout(sortProducts, 300);
+            });
+        });
+
+        // تحسين دالة التصنيف
+        function sortProducts() {
+            const sortBy = document.getElementById('sortBy').value;
+            let sorted = [...filteredProducts];
+
+            switch (sortBy) {
+                case 'price_asc':
+                    sorted.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price_desc':
+                    sorted.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    sorted.sort((a, b) => b.rating - a.rating);
+                    break;
+            }
+
+            filteredProducts = sorted;
+            currentPage = 1;
+            renderProducts();
+        }
+    </script>
+</body>
+
+</html>
